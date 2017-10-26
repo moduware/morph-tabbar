@@ -1,15 +1,69 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../morph-element/morph-element.html">
+<link rel="import" href="../polymer/lib/utils/flattened-nodes-observer.html">
 
 <dom-module id="morph-navbar">
   <template>
     <style>
       :host {
         display: block;
+        box-sizing: border-box;
+        overflow: hidden;
+        display: flex;
+        justify-content: stretch;
+        align-items: center;
+      }
+
+      ::slotted(*) {
+        flex-grow: 1;
+      }
+
+      :host([platform="ios"]) {
+        z-index: 5001;
+        background: #929292;
+        height: 44px;
+        width: 100%;
+
+        font-size: 17px;
+        position: relative;
+        backface-visibility: hidden;
+        transform: translate3d(0,0,0);
+      }
+
+      :host([platform="ios"])::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: auto;
+        right: auto;
+        height: 1px;
+        width: 100%;
+        background-color: #c4c4c4;
+        display: block;
+        z-index: 15;
+        transform-origin: 50% 0;
+        transform: scaleY(.5);
+      }
+
+      :host([platform="ios"]) .container {
+        position: absolute;
+        background: #f7f7f8;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0 8px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
     </style>
+    <div class="container">
+      <slot id="slot"></slot>
+    </div>
     
-    <slot></slot>
   </template>
 
   <script>
@@ -21,15 +75,61 @@
      * @polymer
      * @demo demo/index.html
      */
-    class MorphNavbar extends MorphElement {
+    class MorphNavbar extends Polymer.Element {
       static get is() { return 'morph-navbar'; }
       static get properties() {
         return {
           selected: {
             type: String,
             reflectToAttribute: true
+          },
+          navbarItems: {
+            type: Array,
+            value: () => {return [];}
           }
+          // TODO: create observer for selected to change which element in array of navbar-items is currently selected
         };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+
+        this._observer = new Polymer.FlattenedNodesObserver(this.$.slot, (info) => {
+          this._processNewNodes(info.addedNodes);
+          this._processRemovedNodes(info.removedNodes);
+        });
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this._observer.disconnect();
+      }
+
+      _processNewNodes(nodes) {
+        for(var i=0; i<nodes.length; i++) {
+          if(nodes[i].nodeName != "#text") {
+            var navbarItem = nodes[i];
+            // save nodes into array in navbar
+            this.navbarItems.push(navbarItem);
+            // assign click listener
+            navbarItem.addEventListener('click', (e) => this.innerItemClickHandler(e));   
+            // check current selected field matches this node name
+            if(navbarItem.getAttribute('name') == this.selected) {
+              navbarItem.setAttribute('selected', true);
+            }
+          }
+        }
+      }
+
+      _processRemovedNodes(nodes) {
+        for(var i=0; i<nodes.length; i++) {
+          this.navbarItems.splice(i, 1);
+        }
+        // TODO: make first element of nodes selected, if not elements make "selected" null
+      }
+
+      innerItemClickHandler(e) {
+        this.set('selected', e.target.getAttribute('name'));
       }
     }
 
