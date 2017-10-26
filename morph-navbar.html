@@ -130,6 +130,15 @@
 
       innerItemClickHandler(e) {
         this.set('selected', e.target.getAttribute('name'));
+
+        e.target.setAttribute('selected', true);
+
+        for(var i=0; i<this.navbarItems.length; i++) {
+          console.log(this.navbarItems[i], e.target, this.navbarItems[i] != e.target);
+          if(this.navbarItems[i] != e.target) {
+            this.navbarItems[i].removeAttribute('selected');
+          }
+        }
       }
     }
 
