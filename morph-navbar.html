@@ -1,0 +1,38 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../morph-element/morph-element.html">
+
+<dom-module id="morph-navbar">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    
+    <slot></slot>
+  </template>
+
+  <script>
+    /**
+     * `morph-navbar`
+     * Navigation bar for polymorph components
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class MorphNavbar extends MorphElement {
+      static get is() { return 'morph-navbar'; }
+      static get properties() {
+        return {
+          selected: {
+            type: String,
+            reflectToAttribute: true
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MorphNavbar.is, MorphNavbar);
+  </script>
+</dom-module>
