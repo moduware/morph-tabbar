@@ -124,9 +124,18 @@
 
       _processRemovedNodes(nodes) {
         for(var i=0; i<nodes.length; i++) {
+          var navbarItem = this.navbarItems[i];
+          var wasSelected = navbarItem.getAttribute('selected') == true;
+          
           this.navbarItems.splice(i, 1);
         }
-        // TODO: make first element of nodes selected, if not elements make "selected" null
+
+        if(wasSelected && this.navbarItems.length > 0) {
+          this.navbarItems[0].setAttribute('selected', true);
+        } else if(this.navbarItems.length == 0) {
+          this.set('selected', null);
+        }
+        
       }
 
       innerItemClickHandler(e) {
