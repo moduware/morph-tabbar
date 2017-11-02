@@ -10,6 +10,7 @@
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../morph-navbar-item/morph-navbar-item.html">
     <link rel="import" href="../morph-navbar.html">
 
     <custom-style>
@@ -28,17 +29,11 @@
       <h3>Basic morph-navbar demo</h3>
       <demo-snippet>
         <template>
-          <morph-navbar platform="ios" selected="second">
-            <div name="first">First</div>
-            <div name="second">Second</div>
-            <div name="third">Third</div>
+          <morph-navbar platform="ios" selected="play">
+            <morph-navbar-item name="play" not-selected-image="../img/play.png" selected-image="../img/play_selected.png"></morph-navbar-item>
+            <morph-navbar-item name="favorite" not-selected-image="../img/icon.png" selected-image="../img/icon_selected.png"></morph-navbar-item>
+            <morph-navbar-item name="mic" not-selected-image="../img/mic.png" selected-image="../img/mic_selected.png"></morph-navbar-item>
           </morph-navbar>
-          
-          <!-- <morph-navbar platform="android">
-            <div name="first">First</div>
-            <div name="second">Second</div>
-            <div name="Third">Third</div>
-          </morph-navbar> -->
         </template>
       </demo-snippet>
     </div>
