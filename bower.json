@@ -4,7 +4,8 @@
   "main": "morph-navbar.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
-    "morph-element": "https://github.com/moduware/morph-element.git#master"
+    "morph-element": "https://github.com/moduware/morph-element.git#master",
+    "morph-navbar-item": "https://github.com/moduware/morph-navbar-item.git#master"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
