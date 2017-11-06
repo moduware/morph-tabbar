@@ -20,7 +20,13 @@
             background-color: #eff0f4;
           }
         }
-        
+        morph-navbar-item[platform="ios"] {
+          --selected-label-color: #007aff;
+        }
+        morph-navbar-item[platform="android"] {
+          --selected-label-color: #fff;
+        }
+
       </style>
     </custom-style>
   </head>
@@ -29,12 +35,23 @@
       <h3>Basic morph-navbar demo</h3>
       <demo-snippet>
         <template>
+          <h3>IOS morph-navbar with label demo</h3>
           <morph-navbar platform="ios" selected="play">
-            <morph-navbar-item name="play" not-selected-image="../img/play.png" selected-image="../img/play_selected.png"></morph-navbar-item>
-            <morph-navbar-item name="favorite" not-selected-image="../img/icon.png" selected-image="../img/icon_selected.png"></morph-navbar-item>
-            <morph-navbar-item name="mic" not-selected-image="../img/mic.png" selected-image="../img/mic_selected.png"></morph-navbar-item>
+            <morph-navbar-item platform="ios" name="play" not-selected-image="../img/play_ios.svg" selected-image="../img/play_ios_selected.svg" label></morph-navbar-item>
+            <morph-navbar-item platform="ios" name="favorite" not-selected-image="../img/favorite_ios.svg" selected-image="../img/favorite_ios_selected.svg" label></morph-navbar-item>
+            <morph-navbar-item platform="ios" name="mic" not-selected-image="../img/mic_ios.svg" selected-image="../img/mic_ios_selected.svg" label></morph-navbar-item>
           </morph-navbar>
         </template>
+      </demo-snippet>
+      <demo-snippet>
+      <template>
+        <h3>Android morph-navbar with label demo</h3>
+        <morph-navbar platform="android" selected="play">
+          <morph-navbar-item platform="android" name="play" not-selected-image="../img/play_android.svg" selected-image="../img/play_android_selected.svg" label></morph-navbar-item>
+          <morph-navbar-item platform="android" name="favorite" not-selected-image="../img/favorite_android.svg" selected-image="../img/favorite_android_selected.svg" label></morph-navbar-item>
+          <morph-navbar-item platform="android" name="mic" not-selected-image="../img/mic_android.svg" selected-image="../img/mic_android_selected.svg" label></morph-navbar-item>
+        </morph-navbar>
+      </template>
       </demo-snippet>
     </div>
   </body>
