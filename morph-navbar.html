@@ -8,6 +8,10 @@
       :host {
         --android-background-color: #0076FF;
         --ios-background-color: #f7f7f8;
+        --ios-height: 44px;
+        --ios-labeled-height: 50px;
+        --android-height: 48px;
+        --android-labeled-height: 72px;
         --android-bar-color: rgba(255,255,255,.7);
         --ios-bar-color: #c4c4c4;
 
@@ -25,7 +29,7 @@
       :host([platform="ios"]) {
         z-index: 5001;
         background: #929292;
-        height: 50px;
+        height: var(--ios-height);
         width: 100%;
         padding: 0 8px;
 
@@ -34,6 +38,10 @@
         backface-visibility: hidden;
         transform: translate3d(0,0,0);
       }
+      :host([platform="ios"][label]) {
+        height: var(--ios-labeled-height);
+      }
+
 
       :host([platform="ios"])::before {
         content: '';
@@ -68,7 +76,7 @@
       :host([platform="android"]) {
         z-index: 5001;
         background: #929292;
-        height: 72px;
+        height: var(--android-height);
         width: 100%;
 
 
@@ -78,6 +86,10 @@
         box-shadow: 0 2px 4px 0px rgba(0,0,0,.2);
 
       }
+      :host([platform="android"][label]) {
+        height: var(--android-labeled-height);
+      }
+
 
       :host([platform="android"])::after {
         content: '';
@@ -129,6 +141,12 @@
         return {
           selected: {
             type: String,
+            reflectToAttribute: true,
+            notify: true
+          },
+          label: {
+            type: Boolean,
+            value: false,
             reflectToAttribute: true,
             notify: true
           },
