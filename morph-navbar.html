@@ -159,11 +159,13 @@
 
       connectedCallback() {
         super.connectedCallback();
-
         this._observer = new Polymer.FlattenedNodesObserver(this.$.slot, (info) => {
           this._processNewNodes(info.addedNodes);
           this._processRemovedNodes(info.removedNodes);
         });
+
+        // Flush function needs to be added in order to have changes delivered immediately!
+        this._observer.flush();
       }
 
       disconnectedCallback() {
