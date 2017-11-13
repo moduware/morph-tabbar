@@ -95,6 +95,63 @@
             expect(barSelectedValue).to.be.equal(itemSelectedName);
           });
         });
+
+        // testing default IOS Navbar properties
+        context('Ios Default Navbar', function() {
+          // declare variable for bar in this context only
+          let bar, items, style;
+          // Create a test fixture
+          beforeEach(function() {
+            // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
+            bar = fixture('BasicIosFixture');
+            items = bar.querySelectorAll('morph-navbar-item');
+            style = getComputedStyle(bar);
+          });
+
+          it('instantiating the navbar on ios platform with default properties works', function() {
+            // testing for default properties and which platform was set in html markup
+            expect(bar.platform).to.be.equal('ios');
+            expect(bar.hasAttribute('selected')).to.be.true;
+            expect(bar.navbarItems).to.be.an('Array');
+          });
+
+          it('checking if the navbarItems property gets updated works', function() {
+            expect(bar.navbarItems.length).to.be.equal(items.length);
+          });
+
+          it('Inner item selection works', function() {
+            // testing for default innerItemClickHandler on ios item
+            var inner = sinon.spy(bar, 'innerItemClickHandler');
+            items[1].click();
+
+            expect(inner.callCount).to.be.equal(1);
+            inner.restore();
+          });
+
+          it('Selected attribute gets updated after the click works', function() {
+            var inner = sinon.spy(bar, 'innerItemClickHandler');
+            items[1].click();
+
+            expect(items[1].selected).to.be.true;
+            expect(items[0].selected).to.be.false;
+          })
+
+          it('checking the selected value of navbar is same with the name of the selected item works ', function() {
+            items[1].click();
+
+            // testing for selected value data binding
+            var barSelectedValue, itemSelectedName;
+            barSelectedValue = bar.selected;
+
+            for (var i=0; i<items.length; i++) {
+              if (items[i].hasAttribute('selected')) {
+                itemSelectedName = items[i].name;
+                return;
+              }
+            }
+            expect(barSelectedValue).to.be.equal(itemSelectedName);
+          });
+        });
       })
     </script>
 
