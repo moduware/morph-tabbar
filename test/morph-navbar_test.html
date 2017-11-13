@@ -33,6 +33,26 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="LabeledAndroidFixture">
+      <template>
+        <morph-navbar platform="android" selected="play" label>
+          <morph-navbar-item platform="android" name="play" not-selected-image="../img/play_android.svg" selected-image="../img/play_android_selected.svg" selected label></morph-navbar-item>
+          <morph-navbar-item platform="android" name="favorite" not-selected-image="../img/favorite_android.svg" selected-image="../img/favorite_android_selected.svg" label></morph-navbar-item>
+          <morph-navbar-item platform="android" name="mic" not-selected-image="../img/mic_android.svg" selected-image="../img/mic_android_selected.svg" label></morph-navbar-item>
+        </morph-navbar>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="LabeledIosFixture">
+      <template>
+        <morph-navbar platform="ios" selected="play" label>
+          <morph-navbar-item platform="ios" name="play" not-selected-image="../img/play_ios.svg" selected-image="../img/play_ios_selected.svg" label></morph-navbar-item>
+          <morph-navbar-item platform="ios" name="favorite" not-selected-image="../img/favorite_ios.svg" selected-image="../img/favorite_ios_selected.svg" label></morph-navbar-item>
+          <morph-navbar-item platform="ios" name="mic" not-selected-image="../img/mic_ios.svg" selected-image="../img/mic_ios_selected.svg" label></morph-navbar-item>
+        </morph-navbar>
+      </template>
+    </test-fixture>
+
     <script>
       //check navbarItems length is same with the root navbar-item element length.
 
@@ -42,6 +62,7 @@
         context('Android Default Navbar', function() {
           // declare variable for bar in this context only
           let bar, items, style;
+          const androidHeight = "48px";
           // Create a test fixture
           beforeEach(function() {
             // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
@@ -55,7 +76,9 @@
             // testing for default properties and which platform was set in html markup
             expect(bar.platform).to.be.equal('android');
             expect(bar.hasAttribute('selected')).to.be.true;
+            expect(bar.hasAttribute('label')).to.be.false;
             expect(bar.navbarItems).to.be.an('Array');
+            expect(style.height).to.be.equal(androidHeight);
           });
 
           it('checking if the navbarItems property gets updated works', function() {
@@ -100,6 +123,7 @@
         context('Ios Default Navbar', function() {
           // declare variable for bar in this context only
           let bar, items, style;
+          const iosHeight =  '44px';
           // Create a test fixture
           beforeEach(function() {
             // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
@@ -112,7 +136,9 @@
             // testing for default properties and which platform was set in html markup
             expect(bar.platform).to.be.equal('ios');
             expect(bar.hasAttribute('selected')).to.be.true;
+            expect(bar.hasAttribute('label')).to.be.false;
             expect(bar.navbarItems).to.be.an('Array');
+            expect(style.height).to.be.equal(iosHeight);
           });
 
           it('checking if the navbarItems property gets updated works', function() {
@@ -150,6 +176,58 @@
               }
             }
             expect(barSelectedValue).to.be.equal(itemSelectedName);
+          });
+        });
+
+        // testing Android Navbar labeled properties
+        context('Android Labeled Navbar', function() {
+          // declare variable for bar in this context only
+          let bar, items, style;
+          const androidLabelHeight = '72px';
+          // Create a test fixture
+          beforeEach(function() {
+            // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
+            bar = fixture('LabeledAndroidFixture');
+            items = bar.querySelectorAll('morph-navbar-item');
+            style = getComputedStyle(bar);
+          });
+
+          it('instantiating the navbar on android platform with labeled properties works', function() {
+            // testing for default properties and which platform was set in html markup
+            expect(bar.platform).to.be.equal('android');
+            expect(bar.hasAttribute('label')).to.be.true;
+            expect(bar.label).to.be.true;
+          });
+
+          it('checks the navbar on android platform with labeled styling works', function() {
+            // testing for default properties and which platform was set in html markup
+            expect(style.height).to.be.equal(androidLabelHeight);
+          });
+        });
+
+        // testing Ios Navbar labeled properties
+        context('Ios Labeled Navbar', function() {
+          // declare variable for bar in this context only
+          let bar, items, style;
+          const iosLabelHeight = '50px';
+          // Create a test fixture
+          beforeEach(function() {
+            // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
+            bar = fixture('LabeledIosFixture');
+            items = bar.querySelectorAll('morph-navbar-item');
+            style = getComputedStyle(bar);
+          });
+
+          it('instantiating the navbar on ios platform with labeled properties works', function() {
+            // testing for default properties and which platform was set in html markup
+            expect(bar.platform).to.be.equal('ios');
+            expect(bar.hasAttribute('label')).to.be.true;
+            expect(bar.label).to.be.true;
+          });
+
+          it('checks the navbar on ios platform with labeled styling works', function() {
+            // testing for default properties and which platform was set in html markup
+            expect(style.height).to.be.equal(iosLabelHeight);
           });
         });
       })
