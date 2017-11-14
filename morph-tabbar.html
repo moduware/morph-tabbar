@@ -2,7 +2,7 @@
 <link rel="import" href="../morph-element/morph-element.html">
 <link rel="import" href="../polymer/lib/utils/flattened-nodes-observer.html">
 
-<dom-module id="morph-navbar">
+<dom-module id="morph-tabbar">
   <template>
     <style>
       :host {
@@ -133,15 +133,15 @@
 
   <script>
     /**
-     * `morph-navbar`
-     * Navigation bar for polymorph components
+     * `morph-tabbar`
+     * Tab bar for polymorph components
      *
      * @customElement
      * @polymer
      * @demo demo/index.html
      */
-    class MorphNavbar extends MorphElement {
-      static get is() { return 'morph-navbar'; }
+    class MorphTabbar extends MorphElement {
+      static get is() { return 'morph-tabbar'; }
       static get properties() {
         return {
           selected: {
@@ -155,11 +155,11 @@
             reflectToAttribute: true,
             notify: true
           },
-          navbarItems: {
+          tabbarItems: {
             type: Array,
             value: () => {return [];}
           }
-          // TODO: create observer for selected to change which element in array of navbar-items is currently selected
+          // TODO: create observer for selected to change which element in array of tabbar-items is currently selected
         };
       }
 
@@ -182,35 +182,35 @@
       _processNewNodes(nodes) {
         for(var i=0; i<nodes.length; i++) {
           if(nodes[i].nodeName != "#text") {
-            var navbarItem = nodes[i];
-            // save nodes into array in navbar
-            this.navbarItems.push(navbarItem);
+            var tabbarItem = nodes[i];
+            // save nodes into array in tabbar
+            this.tabbarItems.push(tabbarItem);
             // assign click listener
-            navbarItem.addEventListener('click', (e) => this.innerItemClickHandler(e));
+            tabbarItem.addEventListener('click', (e) => this.innerItemClickHandler(e));
             // check current selected field matches this node name
-            if(navbarItem.getAttribute('name') == this.selected) {
-              navbarItem.setAttribute('selected', true);
+            if(tabbarItem.getAttribute('name') == this.selected) {
+              tabbarItem.setAttribute('selected', true);
             }
           }
         }
-        // we need change size of android highlight based on number of items in navbar
-        this._setAndroidHighlightSizeByNumberOfElements(this.navbarItems.length);
+        // we need change size of android highlight based on number of items in tabbar
+        this._setAndroidHighlightSizeByNumberOfElements(this.tabbarItems.length);
       }
 
       _processRemovedNodes(nodes) {
         for(var i=0; i<nodes.length; i++) {
-          var navbarItem = this.navbarItems[i];
-          var wasSelected = navbarItem.getAttribute('selected') == true;
+          var tabbarItem = this.tabbarItems[i];
+          var wasSelected = tabbarItem.getAttribute('selected') == true;
 
-          this.navbarItems.splice(i, 1);
+          this.tabbarItems.splice(i, 1);
         }
-        
-        // we need change size of android highlight based on number of items in navbar
-        this._setAndroidHighlightSizeByNumberOfElements(this.navbarItems.length);
 
-        if(wasSelected && this.navbarItems.length > 0) {
-          this.navbarItems[0].setAttribute('selected', true);
-        } else if(this.navbarItems.length == 0) {
+        // we need change size of android highlight based on number of items in tabbar
+        this._setAndroidHighlightSizeByNumberOfElements(this.tabbarItems.length);
+
+        if(wasSelected && this.tabbarItems.length > 0) {
+          this.tabbarItems[0].setAttribute('selected', true);
+        } else if(this.tabbarItems.length == 0) {
           this.set('selected', null);
         }
 
@@ -238,19 +238,19 @@
           // Moving highligh on Android
           this._setAndroidHightlightPosition(itemIndex);
         }
-        
+
 
         e.target.setAttribute('selected', true);
 
-        for(var i=0; i<this.navbarItems.length; i++) {
-          //console.log(this.navbarItems[i], e.target, this.navbarItems[i] != e.target);
-          if(this.navbarItems[i] != e.target) {
-            this.navbarItems[i].removeAttribute('selected');
+        for(var i=0; i<this.tabbarItems.length; i++) {
+          //console.log(this.tabbarItems[i], e.target, this.tabbarItems[i] != e.target);
+          if(this.tabbarItems[i] != e.target) {
+            this.tabbarItems[i].removeAttribute('selected');
           }
         }
       }
     }
 
-    window.customElements.define(MorphNavbar.is, MorphNavbar);
+    window.customElements.define(MorphTabbar.is, MorphTabbar);
   </script>
 </dom-module>

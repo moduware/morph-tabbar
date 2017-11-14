@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>morph-navbar demo</title>
+    <title>morph-tabbar demo</title>
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../../morph-navbar-item/morph-navbar-item.html">
-    <link rel="import" href="../morph-navbar.html">
+    <link rel="import" href="../../morph-tabbar-item/morph-tabbar-item.html">
+    <link rel="import" href="../morph-tabbar.html">
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
@@ -20,10 +20,10 @@
             background-color: #eff0f4;
           }
         }
-        morph-navbar-item[platform="ios"] {
+        morph-tabbar-item[platform="ios"] {
           --selected-label-color: #007aff;
         }
-        morph-navbar-item[platform="android"] {
+        morph-tabbar-item[platform="android"] {
           --selected-label-color: #fff;
         }
 
@@ -33,45 +33,45 @@
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h3>Basic morph-navbar demo</h3>
+      <h3>Basic morph-tabbar demo</h3>
       <demo-snippet>
         <template>
-          <h3>IOS morph-navbar demo</h3>
-          <morph-navbar platform="ios" selected="play">
-            <morph-navbar-item platform="ios" name="play" not-selected-image="../img/play_ios.svg" selected-image="../img/play_ios_selected.svg"></morph-navbar-item>
-            <morph-navbar-item platform="ios" name="favorite" not-selected-image="../img/favorite_ios.svg" selected-image="../img/favorite_ios_selected.svg"></morph-navbar-item>
-            <morph-navbar-item platform="ios" name="mic" not-selected-image="../img/mic_ios.svg" selected-image="../img/mic_ios_selected.svg"></morph-navbar-item>
-          </morph-navbar>
+          <h3>IOS morph-tabbar demo</h3>
+          <morph-tabbar platform="ios" selected="play">
+            <morph-tabbar-item platform="ios" name="play" not-selected-image="../img/play_ios.svg" selected-image="../img/play_ios_selected.svg"></morph-tabbar-item>
+            <morph-tabbar-item platform="ios" name="favorite" not-selected-image="../img/favorite_ios.svg" selected-image="../img/favorite_ios_selected.svg"></morph-tabbar-item>
+            <morph-tabbar-item platform="ios" name="mic" not-selected-image="../img/mic_ios.svg" selected-image="../img/mic_ios_selected.svg"></morph-tabbar-item>
+          </morph-tabbar>
         </template>
       </demo-snippet>
       <demo-snippet>
         <template>
-          <h3>Android morph-navbar demo</h3>
-          <morph-navbar platform="android" selected="play">
-            <morph-navbar-item platform="android" name="play" not-selected-image="../img/play_android.svg" selected-image="../img/play_android_selected.svg"></morph-navbar-item>
-            <morph-navbar-item platform="android" name="favorite" not-selected-image="../img/favorite_android.svg" selected-image="../img/favorite_android_selected.svg"></morph-navbar-item>
-            <morph-navbar-item platform="android" name="mic" not-selected-image="../img/mic_android.svg" selected-image="../img/mic_android_selected.svg"></morph-navbar-item>
-          </morph-navbar>
+          <h3>Android morph-tabbar demo</h3>
+          <morph-tabbar platform="android" selected="play">
+            <morph-tabbar-item platform="android" name="play" not-selected-image="../img/play_android.svg" selected-image="../img/play_android_selected.svg"></morph-tabbar-item>
+            <morph-tabbar-item platform="android" name="favorite" not-selected-image="../img/favorite_android.svg" selected-image="../img/favorite_android_selected.svg"></morph-tabbar-item>
+            <morph-tabbar-item platform="android" name="mic" not-selected-image="../img/mic_android.svg" selected-image="../img/mic_android_selected.svg"></morph-tabbar-item>
+          </morph-tabbar>
         </template>
       </demo-snippet>
       <demo-snippet>
         <template>
-          <h3>IOS morph-navbar with label demo</h3>
-          <morph-navbar platform="ios" selected="play" label>
-            <morph-navbar-item platform="ios" name="play" not-selected-image="../img/play_ios.svg" selected-image="../img/play_ios_selected.svg" label></morph-navbar-item>
-            <morph-navbar-item platform="ios" name="favorite" not-selected-image="../img/favorite_ios.svg" selected-image="../img/favorite_ios_selected.svg" label></morph-navbar-item>
-            <morph-navbar-item platform="ios" name="mic" not-selected-image="../img/mic_ios.svg" selected-image="../img/mic_ios_selected.svg" label></morph-navbar-item>
-          </morph-navbar>
+          <h3>IOS morph-tabbar with label demo</h3>
+          <morph-tabbar platform="ios" selected="play" label>
+            <morph-tabbar-item platform="ios" name="play" not-selected-image="../img/play_ios.svg" selected-image="../img/play_ios_selected.svg" label></morph-tabbar-item>
+            <morph-tabbar-item platform="ios" name="favorite" not-selected-image="../img/favorite_ios.svg" selected-image="../img/favorite_ios_selected.svg" label></morph-tabbar-item>
+            <morph-tabbar-item platform="ios" name="mic" not-selected-image="../img/mic_ios.svg" selected-image="../img/mic_ios_selected.svg" label></morph-tabbar-item>
+          </morph-tabbar>
         </template>
       </demo-snippet>
       <demo-snippet>
         <template>
-          <h3>Android morph-navbar with label demo</h3>
-          <morph-navbar platform="android" selected="play" label>
-            <morph-navbar-item platform="android" name="play" not-selected-image="../img/play_android.svg" selected-image="../img/play_android_selected.svg" label></morph-navbar-item>
-            <morph-navbar-item platform="android" name="favorite" not-selected-image="../img/favorite_android.svg" selected-image="../img/favorite_android_selected.svg" label></morph-navbar-item>
-            <morph-navbar-item platform="android" name="mic" not-selected-image="../img/mic_android.svg" selected-image="../img/mic_android_selected.svg" label></morph-navbar-item>
-          </morph-navbar>
+          <h3>Android morph-tabbar with label demo</h3>
+          <morph-tabbar platform="android" selected="play" label>
+            <morph-tabbar-item platform="android" name="play" not-selected-image="../img/play_android.svg" selected-image="../img/play_android_selected.svg" label></morph-tabbar-item>
+            <morph-tabbar-item platform="android" name="favorite" not-selected-image="../img/favorite_android.svg" selected-image="../img/favorite_android_selected.svg" label></morph-tabbar-item>
+            <morph-tabbar-item platform="android" name="mic" not-selected-image="../img/mic_android.svg" selected-image="../img/mic_android_selected.svg" label></morph-tabbar-item>
+          </morph-tabbar>
         </template>
       </demo-snippet>
     </div>
