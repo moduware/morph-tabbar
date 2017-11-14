@@ -23,7 +23,7 @@
       }
 
       ::slotted(*) {
-        flex-grow: 1;
+        flex: 1;
       }
 
       :host([platform="ios"]) {
@@ -91,18 +91,23 @@
         height: var(--android-labeled-height);
       }
 
-      :host([platform="android"])::after {
-        content: '';
+      :host([platform="ios"]) .tab-highlight {
+        display: none
+      }
+
+      :host([platform="android"]) .tab-highlight {
         position: absolute;
         left: 0;
         bottom: 0;
         top: auto;
         right: auto;
         height: 3px;
-        width: 100%;
+        /* width: 100%; */
         background-color: var(--android-bar-color);
         display: block;
         z-index: 15;
+        transform: translate3d(0%, 0px, 0px);
+        transition-duration: .3s;
       }
 
       :host([platform="android"]) .container {
@@ -121,6 +126,7 @@
     </style>
     <div class="container">
       <slot id="slot"></slot>
+      <span id="highlight" class="tab-highlight"></span>
     </div>
 
   </template>
@@ -187,6 +193,8 @@
             }
           }
         }
+        // we need change size of android highlight based on number of items in navbar
+        this._setAndroidHighlightSizeByNumberOfElements(this.navbarItems.length);
       }
 
       _processRemovedNodes(nodes) {
@@ -196,6 +204,9 @@
 
           this.navbarItems.splice(i, 1);
         }
+        
+        // we need change size of android highlight based on number of items in navbar
+        this._setAndroidHighlightSizeByNumberOfElements(this.navbarItems.length);
 
         if(wasSelected && this.navbarItems.length > 0) {
           this.navbarItems[0].setAttribute('selected', true);
@@ -205,13 +216,34 @@
 
       }
 
+      _setAndroidHighlightSizeByNumberOfElements(number) {
+        // we don't need to care about it on ios
+        if(this.platform != 'android') return;
+        let size = 0;
+        if(number != 0) {
+          size = 100/number;
+        }
+        this.$.highlight.style.width = size + '%';
+      }
+
+      _setAndroidHightlightPosition(position) {
+        this.$.highlight.style.transform = `translate3d(${position * 100}%, 0px, 0px)`;
+      }
+
       innerItemClickHandler(e) {
         this.set('selected', e.target.getAttribute('name'));
+
+        if(this.platform == 'android') {
+          let itemIndex = [].indexOf.call(e.target.parentElement.children, e.target);
+          // Moving highligh on Android
+          this._setAndroidHightlightPosition(itemIndex);
+        }
+        
 
         e.target.setAttribute('selected', true);
 
         for(var i=0; i<this.navbarItems.length; i++) {
-          console.log(this.navbarItems[i], e.target, this.navbarItems[i] != e.target);
+          //console.log(this.navbarItems[i], e.target, this.navbarItems[i] != e.target);
           if(this.navbarItems[i] != e.target) {
             this.navbarItems[i].removeAttribute('selected');
           }
