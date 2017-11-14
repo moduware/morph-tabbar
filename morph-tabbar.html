@@ -24,7 +24,12 @@
 
       ::slotted(*) {
         flex: 1;
+        opacity: .7;
       }
+      ::slotted([selected]) {
+        opacity: 1;
+      }
+
 
       :host([platform="ios"]) {
         z-index: 5001;
