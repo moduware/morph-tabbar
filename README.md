@@ -40,17 +40,11 @@ For the information about how to clone the desired repository, running the local
 
 ### Attributes
 
-  Custom attribute     |    Type   | Description                            | Default
------------------------|-----------|----------------------------------------|-----------------
-**`selected`** :       |   String  | Takes the value of **`name`** attribute|  **`null`**
-                       |           | of the selected tabbar item. In order  |
-                       |           | to have default selected item, assign  |
-                       |           | it's name.                             |
-                       |           |                                        |
-**`label`** :          |  Boolean  | To have a tabbar with label assign true|  **`false`**
-                       |           |                                        |
-
-
+| Custom Attribute |   Type  | Description                                                                                                                      | Default     |
+|:----------------:|:-------:|----------------------------------------------------------------------------------------------------------------------------------|-------------|
+|  **`selected`**  | String  | Takes the value of **`name`** attribute of the selected tabbar item. In order  to have default selected item, assign  it's name. | **`null`**  |
+|    **`label`**   | Boolean | To have a tabbar with label assign true                                                                                          | **`false`** |
+You can now import Markdown table code directly using File/Paste table data... dialog.
 
 ### Styling
 
