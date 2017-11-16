@@ -9,6 +9,9 @@ For the information about how to clone the desired repository, running the local
   ## Demo
   - Here is a quick demo of the morph-tabbar element.
 
+  ![alt text](https://user-images.githubusercontent.com/15607784/32863524-acdd8f68-ca10-11e7-87ce-11338333fd43.png)
+
+
   ```html
 
   <template>
@@ -21,7 +24,11 @@ For the information about how to clone the desired repository, running the local
   </template>
 
   ```
-  ![alt text](https://user-images.githubusercontent.com/15607784/32863524-acdd8f68-ca10-11e7-87ce-11338333fd43.png)
+
+
+
+  ![alt text](https://user-images.githubusercontent.com/15607784/32863385-2bcd3946-ca10-11e7-9036-74f974328377.png)
+
 
   ```html
 
@@ -35,7 +42,7 @@ For the information about how to clone the desired repository, running the local
   </template>
 
   ```
-  ![alt text](https://user-images.githubusercontent.com/15607784/32863385-2bcd3946-ca10-11e7-9036-74f974328377.png)
+
 
 
 ### Attributes
@@ -43,7 +50,7 @@ For the information about how to clone the desired repository, running the local
 | Custom Attribute |   Type  | Description                                                                                                                      | Default     |
 |:----------------:|:-------:|----------------------------------------------------------------------------------------------------------------------------------|-------------|
 |  **`selected`**  | String  | Takes the value of **`name`** attribute<br> of the selected tabbar item. In order<br>  to have default selected item,<br> assign  it's name. | **`null`**  |
-|    **`label`**   | Boolean | To have a tabbar with label assign true                                                                                          | **`false`** |
+|    **`label`**   | Boolean | To have a tabbar with label assign **`true`**                                                                                          | **`false`** |
 
 ### Styling
 
