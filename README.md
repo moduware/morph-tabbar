@@ -42,7 +42,7 @@ For the information about how to clone the desired repository, running the local
 
 | Custom Attribute |   Type  | Description                                                                                                                      | Default     |
 |:----------------:|:-------:|----------------------------------------------------------------------------------------------------------------------------------|-------------|
-|  **`selected`**  | String  | Takes the value of **`name`** attribute<br> of the selected tabbar item. In order<br>  to have default selected item, assign  it's name. | **`null`**  |
+|  **`selected`**  | String  | Takes the value of **`name`** attribute<br> of the selected tabbar item. In order<br>  to have default selected item,<br> assign  it's name. | **`null`**  |
 |    **`label`**   | Boolean | To have a tabbar with label assign true                                                                                          | **`false`** |
 
 ### Styling
