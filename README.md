@@ -27,6 +27,8 @@ For the information about how to clone the desired repository, running the local
 
 
 
+
+
   ![alt text](https://user-images.githubusercontent.com/15607784/32863385-2bcd3946-ca10-11e7-9036-74f974328377.png)
 
 
@@ -54,7 +56,7 @@ For the information about how to clone the desired repository, running the local
 
 ### Styling
 
--For android platform;
+-For Android platform;
 
 Custom property                  | Description                            | Default
 ---------------------------------|----------------------------------------|--------------------
@@ -63,7 +65,7 @@ Custom property                  | Description                            | Defa
 `--android-labeled-height`       | Height of the tabbar with label        | 72px
 `--android-bar-color`            | Color of the highlight bar under tabbar| rgba(255,255,255,.7)
 
--For ios platform;
+-For IOS platform;
 
 Custom property                  | Description                            | Default
 ---------------------------------|----------------------------------------|--------------------
