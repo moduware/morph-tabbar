@@ -27,6 +27,7 @@
         flex: 1;
         opacity: .7;
       }
+      
       ::slotted([selected]) {
         opacity: 1;
       }
@@ -148,7 +149,7 @@
      * @polymer
      * @demo morph-tabbar/demo/index.html
      */
-    class MorphTabbar extends MorphElement {
+    class MorphTabbar extends MorphElement(Polymer.Element) {
       static get is() { return 'morph-tabbar'; }
       static get properties() {
         return {
