@@ -9,7 +9,9 @@ For the information about how to clone the desired repository, running the local
   ## Demo
   - Here is a quick demo of the morph-tabbar element.
 
-  ![alt text](https://user-images.githubusercontent.com/15607784/32863524-acdd8f68-ca10-11e7-87ce-11338333fd43.png)
+  <p align="center">
+    <img src="demo-images/ios-demo.png" alt="IOS morph-tabbar demo"/>
+  </p>
 
 
   ```html
@@ -29,8 +31,9 @@ For the information about how to clone the desired repository, running the local
 
 
 
-  ![alt text](https://user-images.githubusercontent.com/15607784/32863385-2bcd3946-ca10-11e7-9036-74f974328377.png)
-
+  <p align="center">
+    <img src="demo-images/android-demo.png" alt="IOS morph-tabbar demo"/>
+  </p>
 
   ```html
 
