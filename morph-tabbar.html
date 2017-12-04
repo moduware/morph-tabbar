@@ -1,4 +1,4 @@
-<!-- <link rel="import" href="../polymer/polymer-element.html"> -->
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
 <link rel="import" href="/bower_components/morph-element/morph-element.html">
 <link rel="import" href="../polymer/lib/utils/flattened-nodes-observer.html">
 
@@ -27,6 +27,7 @@
         flex: 1;
         opacity: .7;
       }
+
       ::slotted([selected]) {
         opacity: 1;
       }
@@ -148,7 +149,7 @@
      * @polymer
      * @demo morph-tabbar/demo/index.html
      */
-    class MorphTabbar extends MorphElement {
+    class MorphTabbar extends MorphElement(Polymer.Element) {
       static get is() { return 'morph-tabbar'; }
       static get properties() {
         return {
