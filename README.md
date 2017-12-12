@@ -10,7 +10,7 @@ For the information about how to clone the desired repository, running the local
   - Here is a quick demo of the morph-tabbar element.
 
   <p align="center">
-    <img src="demo-images/ios-demo.png" alt="IOS morph-tabbar demo"/>
+    <img src="demo-images/ios-demo.gif" alt="IOS morph-tabbar demo"/>
   </p>
 
 
