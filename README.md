@@ -32,7 +32,7 @@ For the information about how to clone the desired repository, running the local
 
 
   <p align="center">
-    <img src="demo-images/android-demo.png" alt="IOS morph-tabbar demo"/>
+    <img src="demo-images/android-demo.gif" alt="IOS morph-tabbar demo"/>
   </p>
 
   ```html
