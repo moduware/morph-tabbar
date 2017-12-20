@@ -188,6 +188,13 @@
         this._observer.disconnect();
       }
 
+
+
+      /**
+       * _processNewNodes - Creates tabbar item with added nodes and adds them into tabbarItems array
+       *
+       * @param  {Array} nodes Items that are added inside the slot.
+       */
       _processNewNodes(nodes) {
         for(var i=0; i<nodes.length; i++) {
           if(nodes[i].nodeName != "#text") {
@@ -206,6 +213,12 @@
         this._setAndroidHighlightSizeByNumberOfElements(this.tabbarItems.length);
       }
 
+
+      /**
+       * _processRemovedNodes - Removes the removed node from the tabbarItems array.
+       *
+       * @param  {Array} nodes Items that are removed from the slot.
+       */
       _processRemovedNodes(nodes) {
         for(var i=0; i<nodes.length; i++) {
           var tabbarItem = this.tabbarItems[i];
@@ -225,6 +238,13 @@
 
       }
 
+
+      /**
+       * _setAndroidHighlightSizeByNumberOfElements - Sets the highlight size of tabbar
+       * based on number of elements in android platform.
+       *
+       * @param  {Number} number number of elements in the slot.
+       */
       _setAndroidHighlightSizeByNumberOfElements(number) {
         // we don't need to care about it on ios
         if(this.platform != 'android') return;
@@ -235,10 +255,22 @@
         this.$.highlight.style.width = size + '%';
       }
 
+
+      /**
+       * _setAndroidHightlightPosition - sets the position of higlight.
+       *
+       * @param  {Number} position index of the selected item.
+       */
       _setAndroidHightlightPosition(position) {
         this.$.highlight.style.transform = `translate3d(${position * 100}%, 0px, 0px)`;
       }
 
+
+      /**
+       * innerItemClickHandler - Handles the click event of the item.      
+       *
+       * @param  {type} e item that click event is happening.
+       */
       innerItemClickHandler(e) {
         this.set('selected', e.target.getAttribute('name'));
 
