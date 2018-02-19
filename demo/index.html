@@ -12,9 +12,9 @@
     <link rel="import" href="/bower_components/iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="/bower_components/morph-tabbar-item/morph-tabbar-item.html">
     <link rel="import" href="/bower_components/morph-tabbar/morph-tabbar.html"
-          onerror="console.warn('Can\'t load button from bower_components, loading local version')">
+          onerror="console.warn('Can\'t load tabbar from bower_components, loading local version')">
     <link rel="import" href="/bower_components/morph-tabbar-item/morph-tabbar-item.html"
-          onerror="console.warn('Can\'t load button from bower_components, loading local version')">
+          onerror="console.warn('Can\'t load tabbar item from bower_components, loading local version')">
     <link rel="import" href="../morph-tabbar.html">
 
     <custom-style>
@@ -63,9 +63,9 @@
         <template>
           <h3>IOS morph-tabbar with label demo</h3>
           <morph-tabbar platform="ios" selected="play" label>
-            <morph-tabbar-item platform="ios" name="play" not-selected-image="../img/play_ios.svg" selected-image="../img/play_ios_selected.svg" label></morph-tabbar-item>
-            <morph-tabbar-item platform="ios" name="favorite" not-selected-image="../img/favorite_ios.svg" selected-image="../img/favorite_ios_selected.svg" label></morph-tabbar-item>
-            <morph-tabbar-item platform="ios" name="mic" not-selected-image="../img/mic_ios.svg" selected-image="../img/mic_ios_selected.svg" label></morph-tabbar-item>
+            <morph-tabbar-item platform="ios" name="play" not-selected-image="../img/play_ios.svg" selected-image="../img/play_ios_selected.svg" hasLabel>play</morph-tabbar-item>
+            <morph-tabbar-item platform="ios" name="favorite" not-selected-image="../img/favorite_ios.svg" selected-image="../img/favorite_ios_selected.svg" hasLabel>favorite</morph-tabbar-item>
+            <morph-tabbar-item platform="ios" name="mic" not-selected-image="../img/mic_ios.svg" selected-image="../img/mic_ios_selected.svg" hasLabel>mic</morph-tabbar-item>
           </morph-tabbar>
         </template>
       </demo-snippet>
@@ -73,9 +73,9 @@
         <template>
           <h3>Android morph-tabbar with label demo</h3>
           <morph-tabbar platform="android" selected="play" label>
-            <morph-tabbar-item platform="android" name="play" not-selected-image="../img/play_android.svg" selected-image="../img/play_android_selected.svg" label></morph-tabbar-item>
-            <morph-tabbar-item platform="android" name="favorite" not-selected-image="../img/favorite_android.svg" selected-image="../img/favorite_android_selected.svg" label></morph-tabbar-item>
-            <morph-tabbar-item platform="android" name="mic" not-selected-image="../img/mic_android.svg" selected-image="../img/mic_android_selected.svg" label></morph-tabbar-item>
+            <morph-tabbar-item platform="android" name="play" not-selected-image="../img/play_android.svg" selected-image="../img/play_android_selected.svg" hasLabel>play</morph-tabbar-item>
+            <morph-tabbar-item platform="android" name="favorite" not-selected-image="../img/favorite_android.svg" selected-image="../img/favorite_android_selected.svg" hasLabel>favorite</morph-tabbar-item>
+            <morph-tabbar-item platform="android" name="mic" not-selected-image="../img/mic_android.svg" selected-image="../img/mic_android_selected.svg" hasLabel>mic</morph-tabbar-item>
           </morph-tabbar>
         </template>
       </demo-snippet>
