@@ -115,7 +115,7 @@
         background-color: var(--android-bar-color);
         display: block;
         z-index: 15;
-        transform: translate3d(0%, 0px, 0px);
+        transform: translate3d(-100%, 0, 0);
         transition-duration: .3s;
       }
 
@@ -263,7 +263,7 @@
        * @param  {Number} position index of the selected item.
        */
       _setAndroidHightlightPosition(position) {
-        this.$.highlight.style.transform = `translate3d(${position * 100}%, 0px, 0px)`;
+        this.$.highlight.style.transform = `translate3d(${position * 100}%, 0, 0)`;
       }
 
 
