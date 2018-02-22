@@ -94,13 +94,19 @@
             inner.restore();
           });
 
+          it('Selected attribute is set on the tabbar item by default when selected set on tabbar', function () {
+            var inner = sinon.spy(bar, 'innerItemClickHandler');
+            
+            expect(items[0].selected).to.be.true;
+          });
+
           it('Selected attribute gets updated after the click works', function() {
             var inner = sinon.spy(bar, 'innerItemClickHandler');
             items[1].click();
 
             expect(items[1].selected).to.be.true;
             expect(items[0].selected).to.be.false;
-          })
+          });
 
           it('checking the selected value of tabbar is the same with name of the selected item works ', function() {
             items[1].click();
