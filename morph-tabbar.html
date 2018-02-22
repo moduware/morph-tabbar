@@ -181,7 +181,7 @@
 
         // This is the possible cause of the selected property not working consistently!!!
         // Flush function needs to be added in order to have changes delivered immediately
-        // this._observer.flush();
+        this._observer.flush();
       }
 
       disconnectedCallback() {
@@ -206,7 +206,7 @@
             tabbarItem.addEventListener('click', (e) => this.innerItemClickHandler(e));
             // check current selected field matches this node name
             if(tabbarItem.getAttribute('name') == this.selected) {
-              tabbarItem.setAttribute('selected', true);
+              tabbarItem.set('selected', true);
             }
           }
         }
