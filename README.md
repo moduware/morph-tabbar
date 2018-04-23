@@ -76,3 +76,6 @@ Custom property                  | Description                            | Defa
 `--ios-height`                   | Height of the tabbar                   | 44px
 `--ios-labeled-height`           | Height of the tabbar with label        | 50px
 `--ios-bar-color`                | Color of the highlight bar above tabbar| #c4c4c4
+
+NOTE: For tabbar to take on the parent background color, you can assign `background-color: transparent`
+
