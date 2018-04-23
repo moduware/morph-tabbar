@@ -35,7 +35,7 @@
 
       :host([platform="ios"]) {
         z-index: 5001;
-        background: #929292;
+        background: var(--ios-background-color, #929292);
         height: var(--ios-height);
         width: 100%;
         padding: 0 8px;
@@ -69,7 +69,7 @@
 
       :host([platform="ios"]) .container {
         position: absolute;
-        background: var(--ios-background-color);;
+        background: var(--ios-background-color);
         left: 0;
         top: 0;
         width: 100%;
@@ -83,7 +83,7 @@
 
       :host([platform="android"]) {
         z-index: 5001;
-        background: #929292;
+        background: var(--android-background-color, #929292);
         height: var(--android-height);
         width: 100%;
         color: #fff;
