@@ -119,9 +119,8 @@
         transition-duration: .3s;
       }
 
-      :host([platform="android"][selected="undefined"]) .tab-highlight {
-        /* i cannot make this to work. When no selected is set on tabbar there should be no highlight */
-        /* transform: translate3d(-100%, 0, 0); */
+      :host([platform="android"][selected=""]) .tab-highlight {
+        transform: translate3d(-100%, 0, 0);
       }
 
       :host([platform="android"]) .container {
@@ -161,7 +160,8 @@
           selected: {
             type: String,
             reflectToAttribute: true,
-            notify: true
+            notify: true,
+            value: ""
           },
           label: {
             type: Boolean,
