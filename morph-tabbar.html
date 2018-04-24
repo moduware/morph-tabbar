@@ -209,7 +209,7 @@
             // assign click listener
             tabbarItem.addEventListener('click', (e) => this.innerItemClickHandler(e));
             // check current selected field matches this node name
-            if(tabbarItem.getAttribute('name') == this.selected) {
+            if(tabbarItem.getAttribute('name') == this.selected && typeof (tabbarItem.set) == 'function') {
               tabbarItem.set('selected', true);
             }
           }
