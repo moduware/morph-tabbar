@@ -12,7 +12,7 @@
         --ios-labeled-height: 50px;
         --android-height: 48px;
         --android-labeled-height: 72px;
-        --android-bar-color: rgba(255,255,255,.7);
+        --android-bar-color: rgba(255, 255, 255, .7);
         --ios-bar-color: #c4c4c4;
         --ios-gray-color: #929292;
 
@@ -44,8 +44,9 @@
         font-size: 17px;
         position: relative;
         backface-visibility: hidden;
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
       }
+
       :host([platform="ios"][label]) {
         height: var(--ios-labeled-height);
       }
@@ -92,7 +93,7 @@
         font-size: 17px;
         position: relative;
         backface-visibility: hidden;
-        box-shadow: 0 2px 4px 0px rgba(0,0,0,.2);
+        box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .2);
 
       }
 
@@ -135,7 +136,6 @@
         justify-content: space-between;
         align-items: center;
       }
-
     </style>
     <div class="container">
       <slot id="slot"></slot>
@@ -160,7 +160,8 @@
           selected: {
             type: String,
             reflectToAttribute: true,
-            notify: true
+            notify: true,
+            observer: '_selectedChangedObserver'
           },
           label: {
             type: Boolean,
@@ -170,7 +171,7 @@
           },
           tabbarItems: {
             type: Array,
-            value: () => {return [];}
+            value: () => { return []; }
           }
           // TODO: create observer for selected to change which element in array of tabbar-items is currently selected
         };
@@ -192,7 +193,24 @@
         this._observer.disconnect();
       }
 
+      _selectedChangedObserver() {
+        const selectedItem = this.querySelector(`[name=${this.selected}]`);
 
+        selectedItem.setAttribute('selected', true);
+
+        for (var i = 0; i < this.tabbarItems.length; i++) {
+          //console.log(this.tabbarItems[i], e.target, this.tabbarItems[i] != e.target);
+          if (this.tabbarItems[i] != selectedItem) {
+            this.tabbarItems[i].removeAttribute('selected');
+          }
+        }
+
+        if (this.platform == 'android') {
+          const itemIndex = [].indexOf.call(this.children, selectedItem);
+          // Moving highligh on Android
+          this._setAndroidHightlightPosition(itemIndex);
+        }
+      }
 
       /**
        * _processNewNodes - Creates tabbar item with added nodes and adds them into tabbarItems array
@@ -200,15 +218,15 @@
        * @param  {Array} nodes Items that are added inside the slot.
        */
       _processNewNodes(nodes) {
-        for(var i=0; i<nodes.length; i++) {
-          if(nodes[i].nodeName != "#text") {
+        for (var i = 0; i < nodes.length; i++) {
+          if (nodes[i].nodeName != "#text") {
             var tabbarItem = nodes[i];
             // save nodes into array in tabbar
             this.tabbarItems.push(tabbarItem);
             // assign click listener
             tabbarItem.addEventListener('click', (e) => this.innerItemClickHandler(e));
             // check current selected field matches this node name
-            if(tabbarItem.getAttribute('name') == this.selected && typeof (tabbarItem.set) == 'function') {
+            if (tabbarItem.getAttribute('name') == this.selected && typeof (tabbarItem.set) == 'function') {
               tabbarItem.set('selected', true);
               
               if(this.platform == 'android') {
@@ -229,7 +247,7 @@
        * @param  {Array} nodes Items that are removed from the slot.
        */
       _processRemovedNodes(nodes) {
-        for(var i=0; i<nodes.length; i++) {
+        for (var i = 0; i < nodes.length; i++) {
           var tabbarItem = this.tabbarItems[i];
           var wasSelected = tabbarItem.getAttribute('selected') == true;
 
@@ -239,9 +257,9 @@
         // we need change size of android highlight based on number of items in tabbar
         this._setAndroidHighlightSizeByNumberOfElements(this.tabbarItems.length);
 
-        if(wasSelected && this.tabbarItems.length > 0) {
+        if (wasSelected && this.tabbarItems.length > 0) {
           this.tabbarItems[0].setAttribute('selected', true);
-        } else if(this.tabbarItems.length == 0) {
+        } else if (this.tabbarItems.length == 0) {
           this.set('selected', null);
         }
 
@@ -256,10 +274,10 @@
        */
       _setAndroidHighlightSizeByNumberOfElements(number) {
         // we don't need to care about it on ios
-        if(this.platform != 'android') return;
+        if (this.platform != 'android') return;
         let size = 0;
-        if(number != 0) {
-          size = 100/number;
+        if (number != 0) {
+          size = 100 / number;
         }
         this.$.highlight.style.width = size + '%';
       }
@@ -282,22 +300,6 @@
        */
       innerItemClickHandler(e) {
         this.set('selected', e.target.getAttribute('name'));
-
-        if(this.platform == 'android') {
-          let itemIndex = [].indexOf.call(e.target.parentElement.children, e.target);
-          // Moving highligh on Android
-          this._setAndroidHightlightPosition(itemIndex);
-        }
-
-
-        e.target.setAttribute('selected', true);
-
-        for(var i=0; i<this.tabbarItems.length; i++) {
-          //console.log(this.tabbarItems[i], e.target, this.tabbarItems[i] != e.target);
-          if(this.tabbarItems[i] != e.target) {
-            this.tabbarItems[i].removeAttribute('selected');
-          }
-        }
       }
     }
 
