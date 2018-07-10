@@ -23,12 +23,14 @@
         align-items: center;
       }
 
-      ::slotted(*) {
-        flex: 1;
+      :host .container ::slotted(*) {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 0%;
         opacity: .7;
       }
 
-      ::slotted([selected]) {
+      :host .container ::slotted([selected]) {
         opacity: 1;
       }
 
