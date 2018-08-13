@@ -31,19 +31,19 @@ For the information about how to clone the desired repository, running the local
 <h3>Andriod tabbar</h3>
 <p>Click the items to see it in action</p>
 
-<morph-tabbar platform="android" selected="play">
-  <morph-tabbar-item platform="android" name="play" not-selected-image="img/play_android.svg" selected-image="img/play_android_selected.svg"></morph-tabbar-item>
-  <morph-tabbar-item platform="android" name="favorite" not-selected-image="img/favorite_android.svg" selected-image="img/favorite_android_selected.svg"></morph-tabbar-item>
-  <morph-tabbar-item platform="android" name="mic" not-selected-image="img/mic_android.svg" selected-image="img/mic_android_selected.svg"></morph-tabbar-item>
+<morph-tabbar platform="android" selected="play" label> 
+  <morph-tabbar-item platform="android" name="play" not-selected-image="img/play_android.svg" selected-image="img/play_android_selected.svg" has-label>play</morph-tabbar-item>
+  <morph-tabbar-item platform="android" name="favorite" not-selected-image="img/favorite_android.svg" selected-image="img/favorite_android_selected.svg" has-label>favorite</morph-tabbar-item>
+  <morph-tabbar-item platform="android" name="mic" not-selected-image="img/mic_android.svg" selected-image="img/mic_android_selected.svg" has-label>mic</morph-tabbar-item>
 </morph-tabbar>
 
 <h3>IOS tabbar</h3>
 <p>Click the items to see it in action</p>
 
-<morph-tabbar platform="ios" selected="play">
-  <morph-tabbar-item platform="ios" name="play" not-selected-image="img/play_ios.svg" selected-image="img/play_ios_selected.svg"></morph-tabbar-item>
-  <morph-tabbar-item platform="ios" name="favorite" not-selected-image="img/favorite_ios.svg" selected-image="img/favorite_ios_selected.svg"></morph-tabbar-item>
-  <morph-tabbar-item platform="ios" name="mic" not-selected-image="img/mic_ios.svg" selected-image="img/mic_ios_selected.svg"></morph-tabbar-item>
+<morph-tabbar platform="ios" selected="play" label>
+  <morph-tabbar-item platform="ios" name="play" not-selected-image="img/play_ios.svg" selected-image="img/play_ios_selected.svg" has-label>play</morph-tabbar-item>
+  <morph-tabbar-item platform="ios" name="favorite" not-selected-image="img/favorite_ios.svg" selected-image="img/favorite_ios_selected.svg" has-label>favorite</morph-tabbar-item>
+  <morph-tabbar-item platform="ios" name="mic" not-selected-image="img/mic_ios.svg" selected-image="img/mic_ios_selected.svg" has-label>mic</morph-tabbar-item>
 </morph-tabbar>
 
 ```
