@@ -4,7 +4,7 @@
 
 Tab bar that morphs for current mobile OS.
 
-`morph-tabbar` is the containing parent element for the `morph-tabbar-item`. These components changes its appearance based on the wether the platform or device is IOS or Android.
+`morph-tabbar` is the containing parent element for the `morph-tabbar-item`. These components changes its appearance automatically based on wether the platform or device is IOS or Android.
 
 ## Getting Started
 
