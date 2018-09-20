@@ -4,8 +4,8 @@
   "main": "morph-tabbar.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
-    "morph-element": "https://github.com/moduware/morph-element.git#master",
-    "morph-tabbar-item": "https://github.com/moduware/morph-tabbar-item.git#master"
+    "morph-element": "https://github.com/moduware/morph-element.git#polymer3",
+    "morph-tabbar-item": "https://github.com/moduware/morph-tabbar-item.git#polymer3"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
@@ -14,5 +14,6 @@
   },
   "resolutions": {
     "polymer": "^2.0.0"
-  }
+  },
+  "license": "Apache-2.0"
 }
