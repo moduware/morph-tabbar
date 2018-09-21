@@ -22,11 +22,7 @@
         See: https://github.com/Polymer/polymer-modulizer/issues/154
         -->
     
-  </head>
-
-  <body>
-
-    <script>
+    <script type="module">
 
       var $_documentContainer = document.createElement('template');
 
@@ -48,12 +44,16 @@
     
             </style>
           </custom-style>`;
-
+      
       document.body.appendChild($_documentContainer.content);
 
     </script>
+  </head>
 
-    <script>
+  <body>
+
+
+    <script type="module">
       var $_documentContainerMarkup = document.createElement('template');
 
       $_documentContainerMarkup.innerHTML = `<div class="vertical-section-container centered">
