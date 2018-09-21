@@ -3,7 +3,6 @@ import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nod
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
-console.log(MorphElement);
 /**
  * `morph-tabbar`
  * Tab bar for polymorph components
