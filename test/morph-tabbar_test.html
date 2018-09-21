@@ -6,11 +6,11 @@
 
     <title>morph-tabbar test</title>
 
-    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-    <script src="../../../wct-browser-legacy/browser.js"></script>
-
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../node_modules/wct-browser-legacy/browser.js"></script>
+    <script type="module" src="../node_modules/wct-browser-legacy/browser.js"></script>
+    <script type="module" src="../node_modules/@polymer/morph-tabbar-item/morph-tabbar-item.js"></script>
     <script type="module" src="../morph-tabbar.js"></script>
-    <script type="module" src="../../../morph-tabbar-item/morph-tabbar-item.js"></script>
   </head>
   <body>
     <test-fixture id="BasicAndroidFixture">
@@ -54,8 +54,7 @@
     </test-fixture>
 
     <script type="module">
-import '../morph-tabbar.js';
-import 'morph-tabbar-item/morph-tabbar-item.js';
+
 //check tabbar length is same with the root tabbar-item element length.
 
 describe('morph-tabbar', function() {
