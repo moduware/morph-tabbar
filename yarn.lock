@@ -2,6 +2,36 @@
 # yarn lockfile v1
 
 
+"@moduware/morph-element@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@moduware/morph-element/-/morph-element-1.0.0.tgz#595bfef96781abd6c09c7ec43cd47b8f2d722909"
+  dependencies:
+    "@polymer/polymer" "^3.0.0"
+
+"@moduware/morph-ripple@^1.0.0":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@moduware/morph-ripple/-/morph-ripple-1.0.2.tgz#a9b3621852f4bbcee306160028027c48d0f0dd37"
+  dependencies:
+    "@polymer/polymer" "^3.0.0"
+
+"@moduware/morph-shared-colors@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@moduware/morph-shared-colors/-/morph-shared-colors-1.0.0.tgz#eed2a66972f54c2f7a8bb045a7f5915a0482d386"
+
+"@moduware/morph-shared-styles@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@moduware/morph-shared-styles/-/morph-shared-styles-1.0.0.tgz#1a7a55381e790cad6c1cba0f14688d39aa2a7600"
+
+"@moduware/morph-tabbar-item@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@moduware/morph-tabbar-item/-/morph-tabbar-item-1.0.0.tgz#0e565b4c3ecbce8245616ae4d87f9b71821b7c3b"
+  dependencies:
+    "@moduware/morph-element" "^1.0.0"
+    "@moduware/morph-ripple" "^1.0.0"
+    "@moduware/morph-shared-colors" "^1.0.0"
+    "@moduware/morph-shared-styles" "^1.0.0"
+    "@polymer/polymer" "^3.0.0"
+
 "@polymer/font-roboto@^3.0.0-pre.25":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@polymer/font-roboto/-/font-roboto-3.0.2.tgz#80cdaa7225db2359130dfb2c6d9a3be1820020c3"
@@ -316,36 +346,6 @@ mocha@^3.4.2:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
-"morph-element@github:moduware/morph-element#polymer3":
-  version "1.0.0"
-  resolved "https://codeload.github.com/moduware/morph-element/tar.gz/1fc7338f6b1f5125f27938969d0b1c20a62bb209"
-  dependencies:
-    "@polymer/polymer" "^3.0.0"
-
-"morph-ripple@github:moduware/morph-ripple#polymer3":
-  version "1.0.0"
-  resolved "https://codeload.github.com/moduware/morph-ripple/tar.gz/63f2d71c884c68cdf3c70b51e5e0feb74897b2d5"
-  dependencies:
-    "@polymer/polymer" "^3.0.0"
-
-"morph-shared-colors@github:moduware/morph-shared-colors#polymer3":
-  version "1.0.0"
-  resolved "https://codeload.github.com/moduware/morph-shared-colors/tar.gz/6cb6c825d60bcc254d5d1ccc6751859aac48b24d"
-
-"morph-shared-styles@github:moduware/morph-shared-styles#polymer3":
-  version "1.0.0"
-  resolved "https://codeload.github.com/moduware/morph-shared-styles/tar.gz/f2dcae832215dab8de3ea3ff071e179ef6f76154"
-
-"morph-tabbar-item@github:moduware/morph-tabbar-item#polymer3":
-  version "1.0.0"
-  resolved "https://codeload.github.com/moduware/morph-tabbar-item/tar.gz/c155da821df21d33dc5739628c6749dd93693b1a"
-  dependencies:
-    "@polymer/polymer" "^3.0.0"
-    morph-element "github:moduware/morph-element#polymer3"
-    morph-ripple "github:moduware/morph-ripple#polymer3"
-    morph-shared-colors "github:moduware/morph-shared-colors#polymer3"
-    morph-shared-styles "github:moduware/morph-shared-styles#polymer3"
-
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -366,7 +366,11 @@ prismjs@^1.11.0:
   optionalDependencies:
     clipboard "^2.0.0"
 
-samsam@1.1.2, samsam@1.1.3, samsam@~1.1:
+samsam@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/samsam/-/samsam-1.1.2.tgz#bec11fdc83a9fda063401210e40176c3024d1567"
+
+samsam@~1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/samsam/-/samsam-1.1.3.tgz#9f5087419b4d091f232571e7fa52e90b0f552621"
 
@@ -400,17 +404,25 @@ strip-ansi@^3.0.0:
   dependencies:
     ansi-regex "^2.0.0"
 
-supports-color@3.1.2, supports-color@^2.0.0:
+supports-color@3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-3.1.2.tgz#72a262894d9d408b956ca05ff37b2ed8a6e2a2d5"
   dependencies:
     has-flag "^1.0.0"
 
+supports-color@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
+
 tiny-emitter@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.0.2.tgz#82d27468aca5ade8e5fd1e6d22b57dd43ebdfb7c"
 
-type-detect@0.1.1, type-detect@1.0.0, type-detect@^1.0.0:
+type-detect@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-0.1.1.tgz#0ba5ec2a885640e470ea4e8505971900dac58822"
+
+type-detect@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-1.0.0.tgz#762217cc06db258ec48908a1298e8b95121e8ea2"
 
