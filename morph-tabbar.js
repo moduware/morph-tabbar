@@ -132,7 +132,7 @@ class MorphTabbar extends LitElement {
         transition-duration: .3s;
       }
 
-      :host([platform="android"][selected=""]) .tab-highlight {
+      :host([platform="android"][selected]) .tab-highlight {
         transform: translate3d(-100%, 0, 0);
       }
 
@@ -162,14 +162,12 @@ class MorphTabbar extends LitElement {
       platform: { String },
       selected: {
         type: String,
-        reflectToAttribute: true,
-        notify: true
+        reflect: true
       },
       label: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true,
-        notify: true
+        reflect: true
       },
       tabbarItems: {
         type: Array
@@ -192,16 +190,16 @@ class MorphTabbar extends LitElement {
       this._processNewNodes(info.addedNodes);
       this._processRemovedNodes(info.removedNodes);
     });
-  }
-  
-  updated(changedProperties) {
-    super.updated(changedProperties);
-    if (changedProperties.has('selected')) {
-      this._selectedChangedObserver();
-    }
 
     // Flush function needs to be added in order to have changes delivered immediately
     this._observer.flush();
+  }
+  
+  updated(changedProperties) {
+    if (changedProperties.has('selected')) {
+      this._selectedChangedObserver();
+    }
+    super.updated(changedProperties);
   }
 
   disconnectedCallback() {
@@ -211,8 +209,8 @@ class MorphTabbar extends LitElement {
 
   _selectedChangedObserver() {
     const selectedItem = this.querySelector(`[name=${this.selected}]`);
-
-    selectedItem.setAttribute('selected', true);
+    // console.log('selectedItem', selectedItem);
+    selectedItem.setAttribute('selected', '');
 
     for (var i = 0; i < this.tabbarItems.length; i++) {
       //console.log(this.tabbarItems[i], e.target, this.tabbarItems[i] != e.target);
@@ -220,7 +218,7 @@ class MorphTabbar extends LitElement {
         this.tabbarItems[i].removeAttribute('selected');
       }
     }
-
+    
     if (this.platform == 'android') {
       const itemIndex = [].indexOf.call(this.children, selectedItem);
       // Moving highligh on Android
@@ -253,7 +251,6 @@ class MorphTabbar extends LitElement {
       }
     }
     // we need change size of android highlight based on number of items in tabbar
-    console.log('tabbarItems.length', this.tabbarItems.length, this.tabbarItems);
     this._setAndroidHighlightSizeByNumberOfElements(this.tabbarItems.length);
   }
 

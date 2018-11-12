@@ -72,7 +72,8 @@
 
           });
 
-          it('instantiating the tabbar on android platform with default properties works', function() {
+          it('instantiating the tabbar on android platform with default properties works', async function() {
+            await bar.updateComplete;
             // testing for default properties and which platform was set in html markup
             expect(bar.platform).to.be.equal('android');
             expect(bar.hasAttribute('selected')).to.be.true;
@@ -81,46 +82,52 @@
             expect(style.height).to.be.equal(androidHeight);
           });
 
-          it('checking if the tabbar property gets updated works', function() {
-            expect(bar.tabbarItems.length).to.be.equal(items.length);
+          it('checking if the tabbar property gets updated works', async function() {
+            await bar.updateComplete;
+            expect(bar.tabbarItems.length).to.be.equal(items.length);  
           });
 
-          it('Inner item selection works', function() {
+          it('Inner item selection works', async function() {
+            await bar.updateComplete;
             // testing for default innerItemClickHandler on android item
             var inner = sinon.spy(bar, 'innerItemClickHandler');
             items[1].click();
 
             expect(inner.callCount).to.be.equal(1);
-            inner.restore();
+            inner.restore();  
           });
 
-          it('Selected attribute is set on the tabbar item by default when selected set on tabbar', function () {
-            var inner = sinon.spy(bar, 'innerItemClickHandler');
+          it('Selected attribute is set on the tabbar item by default when selected set on tabbar', async function () {
+            await bar.updateComplete;
             
             expect(items[0].selected).to.be.true;
+            
           });
 
-          it('Selected attribute gets updated after the click works', function() {
-            var inner = sinon.spy(bar, 'innerItemClickHandler');
+          it('Selected attribute gets updated after the click', async function() {
+            await bar.updateComplete;
             items[1].click();
-
+            await bar.updateComplete;
             expect(items[1].selected).to.be.true;
             expect(items[0].selected).to.be.false;
           });
 
-          it('checking the selected value of tabbar is the same with name of the selected item works ', function() {
-            items[1].click();
-
-            // testing for selected value data binding
-            var barSelectedValue, itemSelectedName;
-            barSelectedValue = bar.selected;
-            for (var i=0; i<items.length; i++) {
-              if (items[i].hasAttribute('selected')) {
-                itemSelectedName = items[i].name;
-                return;
+          it('checking the selected value of tabbar is the same with name of the selected item', async function() {
+              await bar.updateComplete;
+              items[1].click();
+              await bar.updateComplete;
+  
+              // testing for selected value data binding
+              var barSelectedValue, itemSelectedName;
+              barSelectedValue = bar.selected;
+              for (var i=0; i<items.length; i++) {
+                if (items[i].hasAttribute('selected')) {
+                  itemSelectedName = items[i].name;
+                  return;
+                }
               }
-            }
-            expect(barSelectedValue).to.be.equal(itemSelectedName);
+              expect(barSelectedValue).to.be.equal(itemSelectedName);
+              
           });
         });
 
@@ -137,50 +144,53 @@
             style = getComputedStyle(bar);
           });
 
-          it('instantiating the tabbar on ios platform with default properties works', function() {
+          it('instantiating the tabbar on ios platform with default properties works', function(done) {
             // testing for default properties and which platform was set in html markup
-            expect(bar.platform).to.be.equal('ios');
-            expect(bar.hasAttribute('selected')).to.be.true;
-            expect(bar.hasAttribute('label')).to.be.false;
-            expect(bar.tabbarItems).to.be.an('Array');
-            expect(style.height).to.be.equal(iosHeight);
+            flush(function() {
+              expect(bar.platform).to.be.equal('ios');
+              expect(bar.hasAttribute('selected')).to.be.true;
+              expect(bar.hasAttribute('label')).to.be.false;
+              expect(bar.tabbarItems).to.be.an('Array');
+              expect(style.height).to.be.equal(iosHeight);
+              done();
+            });
           });
 
-          it('checking if the tabbarItems property gets updated works', function() {
-            expect(bar.tabbarItems.length).to.be.equal(items.length);
+          it('checking if the tabbarItems property gets updated works', function(done) {
+            flush(function() {
+              expect(bar.tabbarItems.length).to.be.equal(items.length);
+              done();
+            });
           });
 
-          it('Inner item selection works', function() {
+          it('Inner item selection works', function(done) {
             // testing for default innerItemClickHandler on ios item
-            var inner = sinon.spy(bar, 'innerItemClickHandler');
-            items[1].click();
-
-            expect(inner.callCount).to.be.equal(1);
-            inner.restore();
+            flush(function() {
+              var inner = sinon.spy(bar, 'innerItemClickHandler');
+              items[1].click();
+  
+              expect(inner.callCount).to.be.equal(1);
+              inner.restore();
+              done();
+            });
           });
 
-          it('Selected attribute gets updated after the click works', function() {
-            var inner = sinon.spy(bar, 'innerItemClickHandler');
-            items[1].click();
+          it('Selected attribute gets updated after the click', async function() {
 
+            await bar.updateComplete;
+            expect(items[0].selected).to.be.true;
+            items[1].click();
+            await bar.updateComplete;
             expect(items[1].selected).to.be.true;
             expect(items[0].selected).to.be.false;
-          })
+          });
 
-          it('checking the selected value of tabbar is same with the name of the selected item works ', function() {
+          it('selected value of tabbar is updated with the same name of the new selected item', async function() {
+            await bar.updateComplete;
+            expect(bar.selected).to.be.equal('play');
             items[1].click();
-
-            // testing for selected value data binding
-            var barSelectedValue, itemSelectedName;
-            barSelectedValue = bar.selected;
-
-            for (var i=0; i<items.length; i++) {
-              if (items[i].hasAttribute('selected')) {
-                itemSelectedName = items[i].name;
-                return;
-              }
-            }
-            expect(barSelectedValue).to.be.equal(itemSelectedName);
+            await bar.updateComplete;
+            expect(bar.selected).to.be.equal('favorite');
           });
         });
 
@@ -197,14 +207,16 @@
             style = getComputedStyle(bar);
           });
 
-          it('instantiating the tabbar on android platform with labeled properties works', function() {
+          it('instantiating the tabbar on android platform with labeled properties works', async function() {
+            await bar.updateComplete;
             // testing for default properties and which platform was set in html markup
             expect(bar.platform).to.be.equal('android');
             expect(bar.hasAttribute('label')).to.be.true;
             expect(bar.label).to.be.true;
           });
 
-          it('checks the tabbar on android platform with labeled styling works', function() {
+          it('checks the tabbar on android platform with labeled styling works', async function() {
+            await bar.updateComplete;
             // testing for default properties and which platform was set in html markup
             expect(style.height).to.be.equal(androidLabelHeight);
           });
@@ -223,14 +235,16 @@
             style = getComputedStyle(bar);
           });
 
-          it('instantiating the tabbar on ios platform with labeled properties works', function() {
+          it('instantiating the tabbar on ios platform with labeled properties works', async function() {
+            await bar.updateComplete;
             // testing for default properties and which platform was set in html markup
             expect(bar.platform).to.be.equal('ios');
             expect(bar.hasAttribute('label')).to.be.true;
             expect(bar.label).to.be.true;
           });
 
-          it('checks the tabbar on ios platform with labeled styling works', function() {
+          it('checks the tabbar on ios platform with labeled styling works', async function() {
+            await bar.updateComplete;
             // testing for default properties and which platform was set in html markup
             expect(style.height).to.be.equal(iosLabelHeight);
           });
