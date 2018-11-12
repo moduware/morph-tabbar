@@ -12,8 +12,7 @@
   "main": "morph-tabbar.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0",
-    "@moduware/morph-element": "^1.0.0"
+    "@polymer/lit-element": "^0.6.2"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.18",

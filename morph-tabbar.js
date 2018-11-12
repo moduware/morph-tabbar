@@ -1,18 +1,18 @@
-import { MorphElement } from '@moduware/morph-element/morph-element.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { LitElement, html } from '@polymer/lit-element';
+
+import { getPlatform } from '/src/morph-element.js';
 
 /**
  * `morph-tabbar`
  * Tab bar for polymorph components
  *
  * @customElement
- * @polymer
+ * @extends HTMLElement
  * @demo morph-tabbar/demo/index.html
  */
-class MorphTabbar extends MorphElement(PolymerElement) {
-  static get template() {
+class MorphTabbar extends LitElement {
+  render() {
     return html`
     <style>
       :host {
@@ -159,11 +159,11 @@ class MorphTabbar extends MorphElement(PolymerElement) {
   static get is() { return 'morph-tabbar'; }
   static get properties() {
     return {
+      platform: { String },
       selected: {
         type: String,
         reflectToAttribute: true,
-        notify: true,
-        observer: '_selectedChangedObserver'
+        notify: true
       },
       label: {
         type: Boolean,
@@ -172,19 +172,33 @@ class MorphTabbar extends MorphElement(PolymerElement) {
         notify: true
       },
       tabbarItems: {
-        type: Array,
-        value: () => { return []; }
+        type: Array
       }
       // TODO: create observer for selected to change which element in array of tabbar-items is currently selected
     };
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this._observer = new FlattenedNodesObserver(this.$.slot, (info) => {
+  constructor() {
+    super();
+
+    this.tabbarItems = [];
+    this.platform = getPlatform();
+  }
+
+  firstUpdated() {
+    super.firstUpdated();
+
+    this._observer = new FlattenedNodesObserver(this, (info) => {
       this._processNewNodes(info.addedNodes);
       this._processRemovedNodes(info.removedNodes);
     });
+  }
+  
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    if (changedProperties.has('selected')) {
+      this._selectedChangedObserver();
+    }
 
     // Flush function needs to be added in order to have changes delivered immediately
     this._observer.flush();
@@ -232,13 +246,14 @@ class MorphTabbar extends MorphElement(PolymerElement) {
           tabbarItem.set('selected', true);
           
           if(this.platform == 'android') {
-            const postion = this.tabbarItems.indexOf(tabbarItem);
-            this._setAndroidHightlightPosition(postion);
+            const position = this.tabbarItems.indexOf(tabbarItem);
+            this._setAndroidHightlightPosition(position);
           }
         }
       }
     }
     // we need change size of android highlight based on number of items in tabbar
+    console.log('tabbarItems.length', this.tabbarItems.length, this.tabbarItems);
     this._setAndroidHighlightSizeByNumberOfElements(this.tabbarItems.length);
   }
 
@@ -249,9 +264,10 @@ class MorphTabbar extends MorphElement(PolymerElement) {
    * @param  {Array} nodes Items that are removed from the slot.
    */
   _processRemovedNodes(nodes) {
+    let wasSelected;
     for (var i = 0; i < nodes.length; i++) {
       var tabbarItem = this.tabbarItems[i];
-      var wasSelected = tabbarItem.getAttribute('selected') == true;
+      wasSelected = tabbarItem.getAttribute('selected') == true;
 
       this.tabbarItems.splice(i, 1);
     }
@@ -281,7 +297,10 @@ class MorphTabbar extends MorphElement(PolymerElement) {
     if (number != 0) {
       size = 100 / number;
     }
-    this.$.highlight.style.width = size + '%';
+    let shadow = this.shadowRoot;
+    let myElement = shadow.querySelector('#highlight');
+    
+    myElement.style.width = size + '%';
   }
 
 
@@ -291,7 +310,10 @@ class MorphTabbar extends MorphElement(PolymerElement) {
    * @param  {Number} position index of the selected item.
    */
   _setAndroidHightlightPosition(position) {
-    this.$.highlight.style.transform = `translate3d(${position * 100}%, 0, 0)`;
+    let shadow = this.shadowRoot;
+    let myElement = shadow.querySelector('#highlight');
+    
+    myElement.style.transform = `translate3d(${position * 100}%, 0, 0)`;
   }
 
 
@@ -301,7 +323,8 @@ class MorphTabbar extends MorphElement(PolymerElement) {
    * @param  {type} e item that click event is happening.
    */
   innerItemClickHandler(e) {
-    this.set('selected', e.target.getAttribute('name'));
+    this.selected = e.target.getAttribute('name');
+    // this.set('selected', e.target.getAttribute('name'));
   }
 }
 
