@@ -207,6 +207,9 @@ class MorphTabbar extends LitElement {
     this._observer.disconnect();
   }
 
+  /**
+   * When select property changes, it will move the selected attribute to the new clicked or selected item and remove the previous selected attribute
+   */
   _selectedChangedObserver() {
     const selectedItem = this.querySelector(`[name=${this.selected}]`);
     // console.log('selectedItem', selectedItem);
