@@ -180,11 +180,15 @@ class MorphTabbar extends LitElement {
     super();
 
     this.tabbarItems = [];
-    this.platform = getPlatform();
   }
-
+  
   firstUpdated() {
     super.firstUpdated();
+    
+    // check first if there is html markup platform attribute before using getPlatform to check what device or platform to assign platform value
+    if(this.hasAttribute('platform')) {
+      this.platform = getPlatform();
+    }
 
     this._observer = new FlattenedNodesObserver(this, (info) => {
       this._processNewNodes(info.addedNodes);
@@ -196,6 +200,7 @@ class MorphTabbar extends LitElement {
   }
   
   updated(changedProperties) {
+    // checking for change in selected property and calling selectedChangedObserver
     if (changedProperties.has('selected')) {
       this._selectedChangedObserver();
     }
