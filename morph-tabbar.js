@@ -182,11 +182,14 @@ class MorphTabbar extends LitElement {
     this.tabbarItems = [];
   }
   
+  /**
+   * LitElement lifecycle called once just just before first updated() is called
+   */
   firstUpdated() {
     super.firstUpdated();
     
     // check first if there is html markup platform attribute before using getPlatform to check what device or platform to assign platform value
-    if(this.hasAttribute('platform')) {
+    if(!this.hasAttribute('platform')) {
       this.platform = getPlatform();
     }
 
