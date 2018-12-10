@@ -1,7 +1,6 @@
-import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import { LitElement, html } from '@polymer/lit-element';
-
-import { getPlatform } from '/src/morph-element.js';
+import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
+import { getPlatform } from '@moduware/lit-utils';
 
 /**
  * `morph-tabbar`
@@ -153,13 +152,16 @@ class MorphTabbar extends LitElement {
       <slot id="slot"></slot>
       <span id="highlight" class="tab-highlight"></span>
     </div>
-`;
+    `;
   }
 
   static get is() { return 'morph-tabbar'; }
   static get properties() {
     return {
-      platform: { String },
+      platform: { 
+        type: String,
+        reflect: true 
+      },
       selected: {
         type: String,
         reflect: true
@@ -172,7 +174,6 @@ class MorphTabbar extends LitElement {
       tabbarItems: {
         type: Array
       }
-      // TODO: create observer for selected to change which element in array of tabbar-items is currently selected
     };
   }
 
