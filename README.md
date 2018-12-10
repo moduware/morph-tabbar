@@ -4,6 +4,8 @@
 
 Tab bar that morphs for current mobile OS.
 
+Morph Components are now being updated to use lit-element as base class from polymer base class.
+
 `morph-tabbar` is the containing parent element for the `morph-tabbar-item`. These components changes its appearance automatically based on whether the platform or device is IOS or Android.
 
 ## Getting Started
