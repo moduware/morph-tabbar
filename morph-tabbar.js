@@ -1,4 +1,4 @@
-import { LitElement, html } from '@polymer/lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 import { getPlatform } from '@moduware/lit-utils';
 
@@ -11,142 +11,149 @@ import { getPlatform } from '@moduware/lit-utils';
  * @demo morph-tabbar/demo/index.html
  */
 class MorphTabbar extends LitElement {
+  static get styles() {
+    return [
+      css`
+        :host {
+          --android-background-color: #0076FF;
+          --ios-background-color: #f7f7f8;
+          --ios-height: 44px;
+          --ios-labeled-height: 50px;
+          --android-height: 48px;
+          --android-labeled-height: 72px;
+          --android-bar-color: rgba(255, 255, 255, .7);
+          --ios-bar-color: #c4c4c4;
+          --ios-gray-color: #929292;
+
+          box-sizing: border-box;
+          overflow: hidden;
+          display: flex;
+          justify-content: stretch;
+          align-items: center;
+        }
+
+        :host .container ::slotted(*) {
+          flex-grow: 1;
+          flex-shrink: 1;
+          flex-basis: 0%;
+          opacity: .7;
+        }
+
+        :host .container ::slotted([selected]) {
+          opacity: 1;
+        }
+
+
+        :host([platform="ios"]) {
+          z-index: 5001;
+          background: var(--ios-background-color, #929292);
+          height: var(--ios-height);
+          width: 100%;
+          padding: 0 8px;
+          color: var(--ios-gray-color);
+
+          font-size: 17px;
+          position: relative;
+          backface-visibility: hidden;
+          transform: translate3d(0, 0, 0);
+        }
+
+        :host([platform="ios"][label]) {
+          height: var(--ios-labeled-height);
+        }
+
+
+        :host([platform="ios"])::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: auto;
+          right: auto;
+          height: 1px;
+          width: 100%;
+          background-color: var(--ios-bar-color);
+          display: block;
+          z-index: 15;
+          transform-origin: 50% 0;
+          transform: scaleY(.5);
+        }
+
+        :host([platform="ios"]) .container {
+          position: absolute;
+          background: var(--ios-background-color);
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          padding: 0 8px;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        :host([platform="android"]) {
+          z-index: 5001;
+          background: var(--android-background-color, #929292);
+          height: var(--android-height);
+          width: 100%;
+          color: #fff;
+
+
+          font-size: 17px;
+          position: relative;
+          backface-visibility: hidden;
+          box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .2);
+
+        }
+
+        :host([platform="android"][label]) {
+          height: var(--android-labeled-height);
+        }
+
+        :host([platform="ios"]) .tab-highlight {
+          display: none
+        }
+
+        :host([platform="android"]) .tab-highlight {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          top: auto;
+          right: auto;
+          height: 3px;
+          /* width: 100%; */
+          background-color: var(--android-bar-color);
+          display: block;
+          z-index: 15;
+          transform: translate3d(0, 0, 0);
+          transition-duration: .3s;
+        }
+
+        :host([platform="android"][selected]) .tab-highlight {
+          transform: translate3d(-100%, 0, 0);
+        }
+
+        :host([platform="android"]) .container {
+          position: absolute;
+          background: var(--android-background-color);
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      `
+    ];
+  }
   render() {
     return html`
     <style>
-      :host {
-        --android-background-color: #0076FF;
-        --ios-background-color: #f7f7f8;
-        --ios-height: 44px;
-        --ios-labeled-height: 50px;
-        --android-height: 48px;
-        --android-labeled-height: 72px;
-        --android-bar-color: rgba(255, 255, 255, .7);
-        --ios-bar-color: #c4c4c4;
-        --ios-gray-color: #929292;
-
-        box-sizing: border-box;
-        overflow: hidden;
-        display: flex;
-        justify-content: stretch;
-        align-items: center;
-      }
-
-      :host .container ::slotted(*) {
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: 0%;
-        opacity: .7;
-      }
-
-      :host .container ::slotted([selected]) {
-        opacity: 1;
-      }
-
-
-      :host([platform="ios"]) {
-        z-index: 5001;
-        background: var(--ios-background-color, #929292);
-        height: var(--ios-height);
-        width: 100%;
-        padding: 0 8px;
-        color: var(--ios-gray-color);
-
-        font-size: 17px;
-        position: relative;
-        backface-visibility: hidden;
-        transform: translate3d(0, 0, 0);
-      }
-
-      :host([platform="ios"][label]) {
-        height: var(--ios-labeled-height);
-      }
-
-
-      :host([platform="ios"])::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: auto;
-        right: auto;
-        height: 1px;
-        width: 100%;
-        background-color: var(--ios-bar-color);
-        display: block;
-        z-index: 15;
-        transform-origin: 50% 0;
-        transform: scaleY(.5);
-      }
-
-      :host([platform="ios"]) .container {
-        position: absolute;
-        background: var(--ios-background-color);
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        padding: 0 8px;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      :host([platform="android"]) {
-        z-index: 5001;
-        background: var(--android-background-color, #929292);
-        height: var(--android-height);
-        width: 100%;
-        color: #fff;
-
-
-        font-size: 17px;
-        position: relative;
-        backface-visibility: hidden;
-        box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .2);
-
-      }
-
-      :host([platform="android"][label]) {
-        height: var(--android-labeled-height);
-      }
-
-      :host([platform="ios"]) .tab-highlight {
-        display: none
-      }
-
-      :host([platform="android"]) .tab-highlight {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        top: auto;
-        right: auto;
-        height: 3px;
-        /* width: 100%; */
-        background-color: var(--android-bar-color);
-        display: block;
-        z-index: 15;
-        transform: translate3d(0, 0, 0);
-        transition-duration: .3s;
-      }
-
-      :host([platform="android"][selected]) .tab-highlight {
-        transform: translate3d(-100%, 0, 0);
-      }
-
-      :host([platform="android"]) .container {
-        position: absolute;
-        background: var(--android-background-color);
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+      
     </style>
     <div class="container">
       <slot id="slot"></slot>

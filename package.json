@@ -12,7 +12,7 @@
   "main": "morph-tabbar.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "@polymer/lit-element": "^0.6.2",
+    "lit-element": "^2.0.0",
     "@moduware/lit-utils": "^1.0.0"
   },
   "devDependencies": {
