@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/PolymerElements/paper-progress)
 
-Tab bar is a fast and lightweight custom web component that morphs for current mobile OS and uses the LitElement base class.
+A fast and lightweight custom web component tab bar that automatically detects device and looks native IOS or native Android, depending on current mobile OS. It uses LitElement base class.
 
 Morph Components are now being updated to use lit-element as base class from polymer base class.
 

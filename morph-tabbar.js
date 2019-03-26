@@ -56,6 +56,7 @@ class MorphTabbar extends LitElement {
           position: relative;
           backface-visibility: hidden;
           transform: translate3d(0, 0, 0);
+          font-family: -apple-system, 'SF UI Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
         :host([platform="ios"][label]) {
@@ -105,6 +106,7 @@ class MorphTabbar extends LitElement {
           position: relative;
           backface-visibility: hidden;
           box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .2);
+          font-family: Roboto, Noto, Helvetica, Arial, sans-serif;
 
         }
 
@@ -150,19 +152,18 @@ class MorphTabbar extends LitElement {
       `
     ];
   }
+
   render() {
     return html`
-    <style>
-      
-    </style>
-    <div class="container">
-      <slot id="slot"></slot>
-      <span id="highlight" class="tab-highlight"></span>
-    </div>
+      <div class="container">
+        <slot id="slot"></slot>
+        <span id="highlight" class="tab-highlight"></span>
+      </div>
     `;
   }
 
   static get is() { return 'morph-tabbar'; }
+
   static get properties() {
     return {
       platform: { 
