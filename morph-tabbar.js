@@ -32,6 +32,10 @@ class MorphTabbar extends LitElement {
           align-items: center;
         }
 
+        :host([hidden]) {
+          display: none;
+        }
+
         :host .container ::slotted(*) {
           flex-grow: 1;
           flex-shrink: 1;
