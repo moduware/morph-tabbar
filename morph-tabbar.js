@@ -49,7 +49,6 @@ class MorphTabbar extends LitElement {
 
 
         :host([platform="ios"]) {
-          z-index: 5001;
           background: var(--ios-background-color, #929292);
           height: var(--ios-height);
           width: 100%;
@@ -79,7 +78,7 @@ class MorphTabbar extends LitElement {
           width: 100%;
           background-color: var(--ios-bar-color);
           display: block;
-          z-index: 15;
+          z-index: 1;
           transform-origin: 50% 0;
           transform: scaleY(.5);
         }
@@ -99,7 +98,6 @@ class MorphTabbar extends LitElement {
         }
 
         :host([platform="android"]) {
-          z-index: 5001;
           background: var(--android-background-color, #929292);
           height: var(--android-height);
           width: 100%;
@@ -132,7 +130,7 @@ class MorphTabbar extends LitElement {
           /* width: 100%; */
           background-color: var(--android-bar-color);
           display: block;
-          z-index: 15;
+          z-index: 1;
           transform: translate3d(0, 0, 0);
           transition-duration: .3s;
         }
