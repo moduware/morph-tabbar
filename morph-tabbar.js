@@ -47,25 +47,35 @@ class MorphTabbar extends LitElement {
           opacity: 1;
         }
 
+        :host {
+          width: 100%;
+          font-size: 17px;
+          position: relative;
+          backface-visibility: hidden;
+        }
 
         :host([platform="ios"]) {
           background: var(--ios-background-color, #929292);
           height: var(--ios-height);
-          width: 100%;
+          
           padding: 0 8px;
           color: var(--ios-gray-color);
-
-          font-size: 17px;
-          position: relative;
-          backface-visibility: hidden;
           transform: translate3d(0, 0, 0);
           font-family: -apple-system, 'SF UI Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        :host([platform="android"]) {
+          background: var(--android-background-color, #929292);
+          height: var(--android-height);
+          color: #fff;
+          
+          box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .2);
+          font-family: Roboto, Noto, Helvetica, Arial, sans-serif;
         }
 
         :host([platform="ios"][label]) {
           height: var(--ios-labeled-height);
         }
-
 
         :host([platform="ios"])::before {
           content: '';
@@ -83,33 +93,25 @@ class MorphTabbar extends LitElement {
           transform: scaleY(.5);
         }
 
-        :host([platform="ios"]) .container {
+        :host .container {
           position: absolute;
-          background: var(--ios-background-color);
           left: 0;
           top: 0;
           width: 100%;
           height: 100%;
-          padding: 0 8px;
           box-sizing: border-box;
           display: flex;
           justify-content: space-between;
-          align-items: center;
+          align-items: stretch;
         }
 
-        :host([platform="android"]) {
-          background: var(--android-background-color, #929292);
-          height: var(--android-height);
-          width: 100%;
-          color: #fff;
+        :host([platform="ios"]) .container {
+          background: var(--ios-background-color);
+          padding: 0 8px;
+        }
 
-
-          font-size: 17px;
-          position: relative;
-          backface-visibility: hidden;
-          box-shadow: 0 2px 4px 0px rgba(0, 0, 0, .2);
-          font-family: Roboto, Noto, Helvetica, Arial, sans-serif;
-
+        :host([platform="android"]) .container {
+          background: var(--android-background-color);
         }
 
         :host([platform="android"][label]) {
@@ -139,18 +141,7 @@ class MorphTabbar extends LitElement {
           transform: translate3d(-100%, 0, 0);
         }
 
-        :host([platform="android"]) .container {
-          position: absolute;
-          background: var(--android-background-color);
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          box-sizing: border-box;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
+        
       `
     ];
   }
